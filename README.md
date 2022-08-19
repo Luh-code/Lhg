@@ -3,7 +3,7 @@ A mod of Pilzschaf's simple logger.
 Tested C++14, runs on Linux and Windows (mac not tested).  
 
 ## Changes over vanilla
-Adds some extra functionality like using ConsoleTextAttributes for windows users, more different error levels (INFO, DEBUG, WARNING, ERROR, CRITICAL), a toggle for showing path and line before each line and a way to disable add Info Outputs.  
+Adds some extra functionality like using ConsoleTextAttributes for windows users, more different error levels (INFO, DEBUG, WARNING, ERROR, CRITICAL), a toggle for showing path and line before each line and a way to disable all Info Outputs.  
 Added ability to disable INFO outputs to make the console cleaner. To show INFO outputs set the verbose member to true or add the 'LHG_VERBOSE' compile definition.  
 Also colors can be changed at runtime.  
 
