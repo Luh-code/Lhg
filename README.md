@@ -7,7 +7,7 @@ Adds some extra functionality like using ConsoleTextAttributes for windows users
 Also colors can be changed at runtime.  
 
 ## Linux
-If you use linux, set the compile flag 'LHG_LINUX', to disable Console attibutes.
+If you use linux, add the compile definition 'LHG_LINUX', to disable Console attibutes.
 
 ## Example
 ![grafik](https://user-images.githubusercontent.com/60015267/179369867-2b76f557-0fb5-4307-8048-e9e90378948f.png)
