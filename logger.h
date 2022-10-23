@@ -210,7 +210,7 @@ namespace lhg
         if (!(verbose || ignoreVerbosity)) return;
         std::string buf;
         #ifdef LHG_PRINT_LVL
-        buf = "(INFO) ";
+        buf = "(INFO)  ";
         #endif // LHG_PRINT_LVL
         variadic_unpack(buf, msg...);
         log(file, line, buf.c_str(), info_col);
@@ -232,7 +232,7 @@ namespace lhg
     {
         std::string buf;
         #ifdef LHG_PRINT_LVL
-        buf = "(WARN) ";
+        buf = "(WARN)  ";
         #endif // LHG_PRINT_LVL
         variadic_unpack(buf, msg...);
         log(file, line, buf.c_str(), warning_col);
