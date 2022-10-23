@@ -56,14 +56,13 @@ namespace lhg
     static Col debug_col = Col("\033[3;00;96m", FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     static Col warning_col = Col("\033[3;00;33m", FOREGROUND_RED | FOREGROUND_INTENSITY);
     static Col error_col = Col("\033[3;00;31m", FOREGROUND_RED);
-    static Col critical_col = Col("\033[3;101;37m", /*FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | /*FOREGROUND_INTENSITY |*/ BACKGROUND_RED /*| BACKGROUND_INTENSITY*/);
+    static Col critical_col = Col("\033[1;101;37m", /*FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | /*FOREGROUND_INTENSITY |*/ BACKGROUND_RED /*| BACKGROUND_INTENSITY*/);
     
 #ifdef LHG_VERBOSE
     static bool verbose = true;
 #else
     static bool verbose = false;
 #endif // LHG_VERBOSE
-    static bool show_path = true;
     
 #ifndef LHG_LINUX
     static bool use_attributes = false;
@@ -173,7 +172,9 @@ namespace lhg
     
     static void log_line(const char* file, const size_t line, const char* msg, const char* col_att, const char* norm_att)
     {
-        if (show_path) std::cout << col_att << '[' << file << ':' << line << "]: ";
+        #ifndef LHG_HIDE_PATH
+        std::cout << col_att << '[' << file << ':' << line << "]: ";
+        #endif // LHG_HIDE_PATH
         std::cout << msg << norm_att << std::endl;
     }
     
@@ -207,6 +208,9 @@ namespace lhg
     {
         if (!(verbose || ignoreVerbosity)) return;
         std::string buf;
+        #ifdef LHG_PRINT_LVL
+        buf = "(INFO) ";
+        #endif // LHG_PRINT_LVL
         variadic_unpack(buf, msg...);
         log(file, line, buf.c_str(), info_col);
     }
@@ -215,6 +219,9 @@ namespace lhg
         static void log_debug(const char* file, const size_t line, const Args &... msg)
     {
         std::string buf;
+        #ifdef LHG_PRINT_LVL
+        buf = "(DEBUG) ";
+        #endif // LHG_PRINT_LVL
         variadic_unpack(buf, msg...);
         log(file, line, buf.c_str(), debug_col);
     }
@@ -223,6 +230,9 @@ namespace lhg
         static void log_warning(const char* file, const size_t line, const Args &... msg)
     {
         std::string buf;
+        #ifdef LHG_PRINT_LVL
+        buf = "(WARN) ";
+        #endif // LHG_PRINT_LVL
         variadic_unpack(buf, msg...);
         log(file, line, buf.c_str(), warning_col);
     }
@@ -231,6 +241,9 @@ namespace lhg
         static void log_error(const char* file, const size_t line, const Args &... msg)
     {
         std::string buf;
+        #ifdef LHG_PRINT_LVL
+        buf = "(ERROR) ";
+        #endif // LHG_PRINT_LVL
         variadic_unpack(buf, msg...);
         log(file, line, buf.c_str(), error_col);
     }
@@ -239,6 +252,9 @@ namespace lhg
         static void log_critical(const char* file, const size_t line, const Args &... msg)
     {
         std::string buf;
+        #ifdef LHG_PRINT_LVL
+        buf = "(!CRIT) ";
+        #endif // LHG_PRINT_LVL
         variadic_unpack(buf, msg...);
         log(file, line, buf.c_str(), critical_col);
     }
