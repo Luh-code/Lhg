@@ -27,6 +27,18 @@ Major changes:
 #define LOG_CRIT(...) lhg::log_critical(__FILE__, __LINE__, __VA_ARGS__)
 #define LOG_EMPTY() lhg::log_empty()
 
+#define LOG_INIT(...) LOG_INFO(__VA_ARGS__, " initializing...")
+#define LOG_INIT_OK(...) LOG_INFO(__VA_ARGS__, " initializing... OK")
+#define LOG_INIT_AB(...) LOG_INFO(__VA_ARGS__, " initializing... ABORTED")
+
+#define LOG_DEST(...) LOG_INFO("destroying ", __VA_ARGS__, "... ")
+#define LOG_DEST_OK(...) LOG_INFO("destroying ", __VA_ARGS__, "... OK")
+#define LOG_DEST_AB(...) LOG_INFO("destroying ", __VA_ARGS__, "... ABORTED")
+
+#define LOG_DEIN(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... ")
+#define LOG_DEIN_OK(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... OK")
+#define LOG_DEIN_AB(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... ABORTED")
+
 namespace lhg
 {
     struct Col
