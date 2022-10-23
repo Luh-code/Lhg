@@ -172,8 +172,9 @@ namespace lhg
     
     static void log_line(const char* file, const size_t line, const char* msg, const char* col_att, const char* norm_att)
     {
+        std::cout << col_att;
         #ifndef LHG_HIDE_PATH
-        std::cout << col_att << '[' << file << ':' << line << "]: ";
+        std::cout << '[' << file << ':' << line << "]: ";
         #endif // LHG_HIDE_PATH
         std::cout << msg << norm_att << std::endl;
     }
