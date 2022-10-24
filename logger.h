@@ -29,15 +29,19 @@ Major changes:
 
 #define LOG_INIT(...) LOG_INFO(__VA_ARGS__, " initializing...")
 #define LOG_INIT_OK(...) LOG_INFO(__VA_ARGS__, " initializing... OK")
-#define LOG_INIT_AB(...) LOG_INFO(__VA_ARGS__, " initializing... ABORTED")
+#define LOG_INIT_AB(...) LOG_WARN(__VA_ARGS__, " initializing... ABORTED")
 
 #define LOG_DEST(...) LOG_INFO("destroying ", __VA_ARGS__, "... ")
 #define LOG_DEST_OK(...) LOG_INFO("destroying ", __VA_ARGS__, "... OK")
-#define LOG_DEST_AB(...) LOG_INFO("destroying ", __VA_ARGS__, "... ABORTED")
+#define LOG_DEST_AB(...) LOG_WARN("destroying ", __VA_ARGS__, "... ABORTED")
 
 #define LOG_DEIN(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... ")
 #define LOG_DEIN_OK(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... OK")
-#define LOG_DEIN_AB(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... ABORTED")
+#define LOG_DEIN_AB(...) LOG_WARN("deinitializing ", __VA_ARGS__, "... ABORTED")
+
+#define LOG_QUER(...) LOG_INFO("querying ", __VA_ARGS__, "... ")
+#define LOG_QUER_OK(...) LOG_INFO("querying ", __VA_ARGS__, "... OK")
+#define LOG_QUER_AB(...) LOG_WARN("querying ", __VA_ARGS__, "... ABORTED")
 
 namespace lhg
 {
@@ -67,14 +71,16 @@ namespace lhg
     static Col info_col = Col("\033[3;00;37m", FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
     static Col debug_col = Col("\033[3;00;96m", FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
     static Col warning_col = Col("\033[3;00;33m", FOREGROUND_RED | FOREGROUND_INTENSITY);
-    static Col error_col = Col("\033[3;00;31m", FOREGROUND_RED);
+    static Col error_col = Col("\033[1;00;31m", FOREGROUND_RED);
     static Col critical_col = Col("\033[1;101;37m", /*FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | /*FOREGROUND_INTENSITY |*/ BACKGROUND_RED /*| BACKGROUND_INTENSITY*/);
     
+    static bool verbose =
 #ifdef LHG_VERBOSE
-    static bool verbose = true;
+        true
 #else
-    static bool verbose = false;
+        false
 #endif // LHG_VERBOSE
+        ;
     
 #ifndef LHG_LINUX
     static bool use_attributes = false;
