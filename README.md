@@ -16,6 +16,19 @@ These all also have variations for success and failure.
 For success add `_OK` Behind any of these 4 defines.
 For Failure `_AB`.
 
+Also these are all using LOG_ING, a macro, that lets you customize these outputs a bit further.
+__Example:__
+code:
+```c++
+LOG_ING("check", "something");
+LOG_ING_OK("check", "something");
+```
+output:
+```
+checking something...
+checking something... OK
+```
+
 ## Linux
 If you use linux, add the compile definition 'LHG_LINUX', to disable Console attibutes.
 
