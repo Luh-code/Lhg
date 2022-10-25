@@ -27,21 +27,28 @@ Major changes:
 #define LOG_CRIT(...) lhg::log_critical(__FILE__, __LINE__, __VA_ARGS__)
 #define LOG_EMPTY() lhg::log_empty()
 
+#define LOG_ING(thn, ...) LOG_INFO(thn, "ing ",__VA_ARGS__, "...")
+#define LOG_ING_OK(thn, ...) LOG_INFO(thn, "ing ",__VA_ARGS__, "... OK")
+#define LOG_ING_AB(thn, ...) LOG_WARN(thn, "ing ",__VA_ARGS__, "... ABORTED")
+
 #define LOG_INIT(...) LOG_INFO(__VA_ARGS__, " initializing...")
 #define LOG_INIT_OK(...) LOG_INFO(__VA_ARGS__, " initializing... OK")
 #define LOG_INIT_AB(...) LOG_WARN(__VA_ARGS__, " initializing... ABORTED")
 
-#define LOG_DEST(...) LOG_INFO("destroying ", __VA_ARGS__, "... ")
-#define LOG_DEST_OK(...) LOG_INFO("destroying ", __VA_ARGS__, "... OK")
-#define LOG_DEST_AB(...) LOG_WARN("destroying ", __VA_ARGS__, "... ABORTED")
+#define LOG_DEST(...) LOG_ING("destroy", __VA_ARGS__)
+#define LOG_DEST_OK(...) LOG_ING_OK("destroy", __VA_ARGS__)
+#define LOG_DEST_AB(...) LOG_ING_AB("destroy", __VA_ARGS__)
+//#define LOG_DEST(...) LOG_INFO("destroying ", __VA_ARGS__, "... ")
+//#define LOG_DEST_OK(...) LOG_INFO("destroying ", __VA_ARGS__, "... OK")
+//#define LOG_DEST_AB(...) LOG_WARN("destroying ", __VA_ARGS__, "... ABORTED")
 
-#define LOG_DEIN(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... ")
-#define LOG_DEIN_OK(...) LOG_INFO("deinitializing ", __VA_ARGS__, "... OK")
-#define LOG_DEIN_AB(...) LOG_WARN("deinitializing ", __VA_ARGS__, "... ABORTED")
+#define LOG_DEIN(...) LOG_ING("deinitializ", __VA_ARGS__)
+#define LOG_DEIN_OK(...) LOG_ING_OK("deinitializ", __VA_ARGS__)
+#define LOG_DEIN_AB(...) LOG_ING_AB("deinitializ", __VA_ARGS__)
 
-#define LOG_QUER(...) LOG_INFO("querying ", __VA_ARGS__, "... ")
-#define LOG_QUER_OK(...) LOG_INFO("querying ", __VA_ARGS__, "... OK")
-#define LOG_QUER_AB(...) LOG_WARN("querying ", __VA_ARGS__, "... ABORTED")
+#define LOG_QUER(...) LOG_ING("query", __VA_ARGS__)
+#define LOG_QUER_OK(...) LOG_ING_OK("query", __VA_ARGS__)
+#define LOG_QUER_AB(...) LOG_ING_AB("query", __VA_ARGS__)
 
 namespace lhg
 {
